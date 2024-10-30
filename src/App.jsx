@@ -6,7 +6,7 @@ import "./App.css";
 function App() {
   return (
     <>
-      <h1 className="bg-purple-700">Hello world</h1>
+    <h1>Hola mundo mundial</h1>
     </>
   );
 }
