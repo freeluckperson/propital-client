@@ -1,17 +1,26 @@
-import "./App.css";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./components/Login";
 import Notifications from "./pages/Notifications";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Register from "./components/Register";
 
-function App() {
+const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/notifications" element={<Notifications />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Register />} />
+        <Route
+          path="/notifications"
+          element={
+            <ProtectedRoute>
+              <Notifications />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </Router>
   );
-}
+};
 
 export default App;

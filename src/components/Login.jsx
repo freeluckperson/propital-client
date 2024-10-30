@@ -7,6 +7,9 @@ import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 
+const api_base_url = import.meta.env.VITE_API_BASE_URL;
+console.log(api_base_url);
+
 const loginSchema = z.object({
   email: z.string().email("Correo electrónico no válido"),
   password: z.string().min(6, "La contraseña debe tener al menos 6 caracteres"),
@@ -26,14 +29,17 @@ const Login = () => {
   const onSubmit = async (data) => {
     try {
       const response = await axios.post(
-        'https://server-o25o.onrender.com/login',
+        `${api_base_url}/login`,
         data,
         { withCredentials: true }
       );
-
+  
       toast.success("Login correcto");
       console.log('Login correcto:', response.data);
-
+  
+      // Guarda el token JWT en sessionStorage
+      sessionStorage.setItem('jwtToken', response.data.token);
+  
       // Redirige a la vista de notificaciones
       navigate("/notifications");
     } catch (error) {
@@ -41,6 +47,7 @@ const Login = () => {
       toast.error(error.response?.data?.message || "Error al iniciar sesión");
     }
   };
+  
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
