@@ -66,21 +66,22 @@ const Notifications = () => {
 
       setNotifications((prevNotifications) =>
         prevNotifications.map((notification) =>
-          notification._id === id ? { ...notification, read: true } : notification
+          notification._id === id
+            ? { ...notification, read: true }
+            : notification
         )
       );
-      applyFilter(filter); // Aplica el filtro actual al actualizar la lista
+      applyFilter(filter);
     } catch (error) {
       console.error("Error al marcar como leído:", error);
     }
   };
 
   const handleDeleteNotification = (id) => {
-    // Elimina la notificación del estado sin consultar al backend
     setNotifications((prevNotifications) =>
       prevNotifications.filter((notification) => notification._id !== id)
     );
-    applyFilter(filter); // Aplica el filtro actual después de eliminar la notificación
+    applyFilter(filter);
   };
 
   const handleFilterChange = (newFilter) => {
