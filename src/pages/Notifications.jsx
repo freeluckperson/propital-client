@@ -75,16 +75,12 @@ const Notifications = () => {
     }
   };
 
-  const handleDeleteNotification = async (id) => {
-    try {
-      await axios.delete(`${api_base_url}/notifications/${id}`);
-      setNotifications((prevNotifications) =>
-        prevNotifications.filter((notification) => notification._id !== id)
-      );
-      applyFilter(filter); // Aplica el filtro actual después de eliminar la notificación
-    } catch (error) {
-      console.error("Error al eliminar notificación:", error);
-    }
+  const handleDeleteNotification = (id) => {
+    // Elimina la notificación del estado sin consultar al backend
+    setNotifications((prevNotifications) =>
+      prevNotifications.filter((notification) => notification._id !== id)
+    );
+    applyFilter(filter); // Aplica el filtro actual después de eliminar la notificación
   };
 
   const handleFilterChange = (newFilter) => {

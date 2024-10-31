@@ -6,13 +6,9 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate, Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
+import { loginSchema } from "../utils/schema";
 
 const api_base_url = import.meta.env.VITE_API_BASE_URL;
-
-const loginSchema = z.object({
-  email: z.string().email("Correo electrónico no válido"),
-  password: z.string().min(6, "La contraseña debe tener al menos 6 caracteres"),
-});
 
 const Login = () => {
   const navigate = useNavigate();

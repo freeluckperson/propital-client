@@ -6,18 +6,10 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate, Link } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
+import { registerSchema } from '../utils/schema';
 
 const api_base_url = import.meta.env.VITE_API_BASE_URL;
 
-const registerSchema = z.object({
-  email: z.string().email("Correo electrónico no válido"),
-  username: z.string().min(3, "El nombre de usuario debe tener al menos 3 caracteres"),
-  password: z.string().min(6, "La contraseña debe tener al menos 6 caracteres"),
-  confirmPassword: z.string().min(6, "La confirmación debe tener al menos 6 caracteres"),
-}).refine((data) => data.password === data.confirmPassword, {
-  message: "Las contraseñas no coinciden",
-  path: ["confirmPassword"],
-});
 
 const Register = () => {
   const navigate = useNavigate();
