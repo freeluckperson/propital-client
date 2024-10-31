@@ -4,7 +4,7 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 
 const api_base_url = import.meta.env.VITE_API_BASE_URL;
@@ -108,6 +108,9 @@ const Register = () => {
             Registrarse
           </button>
         </form>
+        <div className="text-sm text-center text-gray-500">
+          ¿Tienes una cuenta? <Link to="/login" className="text-indigo-600 hover:underline">Log in</Link>
+        </div>
       </div>
       <ToastContainer />
     </div>
